@@ -1,8 +1,8 @@
-## First steps
+## Day 1
 
 Installed Ansible into a Python3 virtual environment.
 
-`inventory` is
+Decided which pi to play with, then created `inventory` as
 
     [pi]
     pi3 ansible_user=pi
@@ -12,6 +12,8 @@ Had to install `sshpass` locally, for reasons I need to review.
     $ ssh-copy-id pi@pi3
 
 prompted for a password, then copied my public key.
+
+Now I can talk to the Pi.
 
     $ ansible -i inventory -m shell -a "df -h" pi3
     [DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.9 (default, 
@@ -29,7 +31,7 @@ prompted for a password, then copied my public key.
     /dev/mmcblk0p1   63M   22M   42M  35% /boot
     tmpfs            93M     0   93M   0% /run/user/1000
 
-Pesky deprecation warning. Shut it off by createing `ansible.cfg` with
+Pesky deprecation warning. Shut it off by creating `ansible.cfg` with
 
     [defaults]
     deprecation_warnings=False
