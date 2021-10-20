@@ -4,6 +4,8 @@ Working through what it takes to use Ansible to deploy a Flask app to a VM, to a
 
 Why? Because I'm running in to the limits of using shell scripts, and want to get some experience with Ansible.
 
+Follow along in (NOTES.md)[NOTES.md]
+
 This isn't necessarily fit for anyone else's use, so use at your own risk.
 
 ## Preliminaries
@@ -33,7 +35,9 @@ To reprovision a VM
 
     $ vagrant provision
 
-## TODO: Deploying onto a Pi on the home network
+## Deploying onto a Pi on the home network
+
+I'm using existing Pis that already have my public key installed. Otherwise, `ssh-copy-id` would do that.
 
 With the virtual environment activated,
 
