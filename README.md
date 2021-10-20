@@ -45,6 +45,7 @@ With the virtual environment activated,
 
 ## TODO: Deploy onto an EC2 instance
 
-Which I'll need to provision by hand, and `ssh-copy-id` my public key onto. (Terraform is out of scope at this time.)
+Which I'll need to provision by hand (Terraform being out of scope at the moment),
+and then `ssh-copy-id` my public key onto the instance.
 
     $ ansible-playbook -i inventory_ec2 provision/site.yml all
