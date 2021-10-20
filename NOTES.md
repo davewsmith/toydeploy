@@ -46,4 +46,13 @@ Now
 This might provide one way of distinguishing between being on a Pi or in a VM. (There's probably a best practice here.)
 
 
+## Day 2
 
+   vagrant up
+
+builds a 1Gb Ubuntu 18.08 VM, with an ansible provisioner.
+
+Decision: to keep things decluttered, playbooks will go in `provision/`
+
+In anticipation of AWS, and wanting to avoid `all` meaning both Pis and AWS,
+inventories are now `inventory_pi` and `inventory_aws`

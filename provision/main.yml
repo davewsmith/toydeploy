@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: false
+
+  tasks:
+    - name: show the user
+      debug:
+        var: ansible_user
+
+    - name: show disk space
+      shell: df -h
