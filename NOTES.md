@@ -79,3 +79,4 @@ does. Huh?
 
 Wrote the question up and posted to serverfault.com
 
+And... answered fairly quickly. I needed to store the result in a var, then using `debug:` to display it. Odd that the Ansible provisioner in Vagrant behaves different, but whatever.

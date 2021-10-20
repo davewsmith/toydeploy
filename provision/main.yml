@@ -7,5 +7,9 @@
       debug:
         var: ansible_user
 
-    - name: show disk space
-      shell: df -h
+    - name: get free disk space
+      shell:
+        cmd: df -h
+      register: df
+    - name: show free disk space
+      debug: var=df
