@@ -2,11 +2,9 @@
 
 Working through what it takes to use Ansible to deploy a Flask app to a VM, to a Pi, and to an EC2 instance.
 
-Why? Because I'm running in to the limits of using shell scripts, and want to get some experience with Ansible.
+Why? Because scripting installs with bash scripts is tedious, and I want to get some more experience with Ansible.
 
 Follow the fun in [NOTES](NOTES.md).
-
-This isn't necessarily fit for anyone else's use, so use at your own risk.
 
 ## Preliminaries
 
@@ -49,3 +47,7 @@ Which I'll need to provision by hand (Terraform being out of scope at the moment
 and then `ssh-copy-id` my public key onto the instance.
 
     $ ansible-playbook -i inventory_ec2 provision/site.yml all
+
+## Caveat Lector
+
+This isn't necessarily fit for anyone else's use, so use at your own risk.
