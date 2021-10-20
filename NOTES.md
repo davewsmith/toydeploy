@@ -50,7 +50,7 @@ This might provide one way of distinguishing between being on a Pi or in a VM. (
 
 Added a Vagrantfile with an Ansible provisioner.
 
-   $ vagrant up
+    $ vagrant up
 
 builds a 1Gb Ubuntu 18.08 VM and runs a skeletal playbook.
 
