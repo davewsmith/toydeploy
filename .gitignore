@@ -1,2 +1,6 @@
-*.log
+# ignore the virtual environment we're using for ansible
 venv
+
+# up'ing a VM leaves residue
+*.log
+.vagrant
