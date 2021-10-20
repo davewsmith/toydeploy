@@ -71,7 +71,7 @@ works.
 
     $ ansible-playbook -i inventory_pi provision/main.yml
 
-sort of worked. Oddly, it didn't show `df -h` results. But
+sort of worked. Oddly, that didn't show `df -h` results. But
 
     $ ansible -i inventory_pi -m shell -a "df -h" pi3
 
@@ -79,4 +79,8 @@ does. Huh?
 
 Wrote the question up and posted to serverfault.com
 
-And... answered fairly quickly. I needed to store the result in a var, then using `debug:` to display it. Odd that the Ansible provisioner in Vagrant behaves different, but whatever.
+And... got an answer fairly quickly. I needed to store the result in a var, then using `debug:` to display it.
+Odd that the Ansible provisioner in Vagrant behaves differently, but whatever.
+
+Next up, launch a micro instance on EC2.
+
