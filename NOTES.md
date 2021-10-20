@@ -48,11 +48,34 @@ This might provide one way of distinguishing between being on a Pi or in a VM. (
 
 ## Day 2
 
-   vagrant up
+Added a Vagrantfile with an Ansible provisioner.
 
-builds a 1Gb Ubuntu 18.08 VM, with an ansible provisioner.
+   $ vagrant up
 
-Decision: to keep things decluttered, playbooks will go in `provision/`
+builds a 1Gb Ubuntu 18.08 VM and runs a skeletal playbook.
 
-In anticipation of AWS, and wanting to avoid `all` meaning both Pis and AWS,
-inventories are now `inventory_pi` and `inventory_aws`
+    ok: [default] => {
+        "ansible_user": "vagrant"
+    }
+
+Nice: One of several ways to adapt to the environment.
+
+To keep things decluttered, playbook and associated stuff will go in `provision/`
+
+In anticipation of AWS, and wanting to avoid `all` meaning both Pis and EC2 instances,
+inventories are now `inventory_pi` and `inventory_ec2`
+
+    $ ansible -i inventory_pi -m debug -a "var=ansible_user" all
+
+works.
+
+    $ ansible-playbook -i inventory_pi provision/main.yml
+
+sort of worked. Oddly, it didn't show `df -h` results. But
+
+    $ ansible -i inventory_pi -m shell -a "df -h" pi3
+
+does. Huh?
+
+Wrote the question up and posted to serverfault.com
+
