@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: false
+  become: true
 
   tasks:
     - name: show the user
@@ -13,3 +13,14 @@
       register: df
     - name: show free disk space
       debug: var=df.stdout_lines
+
+    - name: install nginx
+      apt:
+        name: nginx
+        state: latest
+        update_cache: true
+
+    - name: copy test.html
+      template:
+        src: test.html.j2
+        dest: /var/www/html/test.html
