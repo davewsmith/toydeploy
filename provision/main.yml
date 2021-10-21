@@ -24,3 +24,11 @@
       template:
         src: test.html.j2
         dest: /var/www/html/test.html
+
+    - name: clone the toydeploy repo
+      become: false
+      git:
+        repo: 'https://github.com/davewsmith/toydeploy.git'
+        dest: 'toydeploy'
+        depth: 1
+      when: ansible_user != 'vagrant'
