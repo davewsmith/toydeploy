@@ -100,3 +100,11 @@ Fortunately, nginx puts things in the same places on both Ubuntu and Raspberry P
 
 Note to self: When before updating Pi3, consult `install.log` and preserve `wxbug`.
 
+Wired things up such that in a VM, the directory that holds the repo is mounted as `/home/vagrant/toydeploy`
+
+On a Pi, the repo gets cloned to `/home/pi/toydeploy`.  The
+
+    when: ansible_user != 'vagrant'
+
+that helps that work gives me a slight itch. On the lookout for a cleaner way.
+
