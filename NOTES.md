@@ -108,3 +108,4 @@ On a Pi, the repo gets cloned to `/home/pi/toydeploy`.  The
 
 that helps that work gives me a slight itch. On the lookout for a cleaner way.
 
+Selective use of `when_changed: false` to avoid false changes (e.g., `df -h` doesn't have a side-effect). Also added `cache_valid_time: 3600` to speed things along.

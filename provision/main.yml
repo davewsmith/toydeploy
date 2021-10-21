@@ -3,22 +3,30 @@
   become: true
 
   tasks:
-    - name: show the user
+    - name: show some vars
       debug:
-        var: ansible_user
+        msg: "On {{ ansible_facts['distribution'] }} the user is {{ ansible_user }}"
 
     - name: get free disk space
       shell:
         cmd: df -h
       register: df
+      changed_when: false
+
     - name: show free disk space
       debug: var=df.stdout_lines
 
-    - name: install nginx
+    - name: update apt cache
       apt:
-        name: nginx
-        state: latest
         update_cache: true
+        cache_valid_time: 3600
+
+    - name: install dependencies
+      apt:
+        name: '{{ item }}'
+        state: latest
+      with_items:
+        - nginx
 
     - name: copy test.html
       template:
