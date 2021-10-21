@@ -84,3 +84,13 @@ Odd that the Ansible provisioner in Vagrant behaves differently, but whatever.
 
 Next up, launch a micro instance on EC2.
 
+## Day 3
+
+Yesterday's mystery explained by the `ansible.verbose = 'v'` in Vagrantfile, which caused extra output.
+
+Developing in a VM is convenient. A common thing to do is let Vagrant mount the current directory as '/vagrant',
+but that's not in the spirit of a deploy (it's more like using a VM to contain damage). So, a decision:
+pull source from github when provisioning, or mount it? I think I'll come down on the side of using the VM as
+a development aide, and provision everything except source.
+
+

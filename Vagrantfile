@@ -5,11 +5,10 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"  # 18.04 LTS
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
-
   # config.vm.network "private_network", ip: "192.168.33.10"
 
-  # Possibility for future database
-  # config.vm.synced_folder "./data", "/data"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/home/vagrant/toydeploy"
 
   # See https://github.com/mitchellh/vagrant/issues/5005
   # config.ssh.insert_key = false
@@ -21,7 +20,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "ansible" do |ansible|
-    ansible.verbose = "v"
+    # ansible.verbose = "v"
     ansible.playbook = "provision/main.yml"
   end
 
