@@ -93,4 +93,10 @@ but that's not in the spirit of a deploy (it's more like using a VM to contain d
 pull source from github when provisioning, or mount it? I think I'll come down on the side of using the VM as
 a development aide, and provision everything except source.
 
+Side trip into ensuring nginx is installed, and putting test.html in place via `template:`.
+
+Pi3 isn't able to complete an `apt-get update`, possibly because it needs an O/S update, so switching to Pi4.
+Fortunately, nginx puts things in the same places on both Ubuntu and Raspberry Pi OS, so this part was easy.
+
+Note to self: When before updating Pi3, consult `install.log` and preserve `wxbug`.
 
