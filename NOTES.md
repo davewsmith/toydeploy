@@ -111,3 +111,20 @@ that helps that work gives me a slight itch. On the lookout for a cleaner way.
 Selective use of `when_changed: false` to avoid false changes (e.g., `df -h` doesn't have a side-effect).
 Also added `cache_valid_time: 3600` to speed things along.
 
+## Day 4
+
+Re-thinking the VM. Aside from isolating changes from the host (my laptop), the VM serves two purposes:
+
+1. an environment for quickly developing Ansible scripts, and
+2. a development environment for an App.
+
+These are somewhat in conflict. For app development, being able to edit the same files either inside
+the VM or outside (thanks to synced folders) is convenient. But that means skipping the `git clone`
+step in provisioning. If, instead of syncing the current directory I were to clone what's in github,
+I'd have to do app development exclusively inside the VM and set it up with my private key to push
+from there.
+
+Rustled up the parts (and the download) needed to flash the latest Rasperry Pi OS onto the older Pi
+I'm using, and a scratch Pi.
+
+Otherwise, no code today.
