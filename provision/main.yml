@@ -2,6 +2,10 @@
 - hosts: all
   become: true
 
+  vars:
+    github_account: davewsmith
+    app_name: toydeploy
+
   tasks:
 
     - name: show all facts
@@ -39,10 +43,9 @@
         src: test.html.j2
         dest: /var/www/html/test.html
 
-    - name: clone the toydeploy repo
+    - name: clone the repo
       become: false
       git:
-        repo: 'https://github.com/davewsmith/toydeploy.git'
-        dest: 'toydeploy'
+        repo: 'https://github.com/{{ github_account }}/{{ app_name }}.git'
+        dest: '{{ app_name }}'
         depth: 1
-      when: ansible_user != 'vagrant'

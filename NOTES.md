@@ -139,3 +139,8 @@ Otherwise, no code today.
 
 and voilà, a minimally provisioned Pi.
 
+## Day 5
+
+Decided to mount `.` as `/vagrant`, and provision to `/home/vagrant/`.
+Not the way I'm used to working in a VM, but the VM practices I was introduced to may have been quirky.
+This gets rid of the itch from day 3.
