@@ -128,3 +128,14 @@ Rustled up the parts (and the download) needed to flash the latest Rasperry Pi O
 I'm using, and a scratch Pi.
 
 Otherwise, no code today.
+
+## Day 5
+
+ * Updated an old Pi 2 with Raspberry Pi OS Lite and plugged it in to the home router
+ * `ssh-copy-id` to it
+ * installed and up'd `tailscale`
+ * pointed `inventory_pi` at the Pi's tailscale ip
+ * `$ ansible-playbook -i inventory_pi provision/main.yml`
+
+and voilà, a minimally provisioned Pi.
+
