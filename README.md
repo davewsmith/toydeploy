@@ -50,4 +50,4 @@ and then `ssh-copy-id` my public key onto the instance.
 
 ## Caveat Lector
 
-This isn't necessarily fit for anyone else's use, so use at your own risk.
+This isn't necessarily fit for anyone else's use, so use at your own risk. There are better examples to crib from.
