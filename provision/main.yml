@@ -5,6 +5,7 @@
   vars:
     github_account: davewsmith
     app_name: toydeploy
+    app_dir: '/home/{{ ansible_user }}/{{ app_name }}'
 
   tasks:
 
@@ -37,6 +38,8 @@
         state: latest
       with_items:
         - nginx
+        - python3-pip
+        - python-virtualenv
 
     - name: copy test.html
       template:
@@ -49,3 +52,11 @@
         repo: 'https://github.com/{{ github_account }}/{{ app_name }}.git'
         dest: '{{ app_name }}'
         depth: 1
+
+    - name: install app requirements
+      become: false
+      pip:
+        # venv is in .gitignore
+        virtualenv: '{{ app_dir }}/venv'
+        virtualenv_python: python3
+        requirements: '{{ app_dir }}/requirements.txt'
