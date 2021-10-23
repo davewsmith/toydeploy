@@ -39,14 +39,15 @@ I'm using existing Pis that already have my public key installed. Otherwise, `ss
 
 With the virtual environment activated,
 
-    $ ansible-playbook -i inventory_pi provision/site.yml all
+    $ ansible -i inventory_pi -m shell -a "df -h" all
+    $ ansible-playbook -i inventory_pi provision/site.yml
 
 ## TODO: Deploy onto an EC2 instance
 
 Which I'll need to provision by hand (Terraform being out of scope at the moment),
 and then `ssh-copy-id` my public key onto the instance.
 
-    $ ansible-playbook -i inventory_ec2 provision/site.yml all
+    $ ansible-playbook -i inventory_ec2 provision/site.yml
 
 ## Caveat Lector
 
