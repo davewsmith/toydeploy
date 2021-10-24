@@ -1,7 +1,14 @@
-__pycache__
-
 # ignore the virtual environment we're using for ansible
 venv
+
+# ignore the .env file that provisioning renders
+.env
+
+# ignore the database
+data
+
+# Python residue
+__pycache__
 
 # up'ing a VM leaves residue
 *.log
