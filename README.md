@@ -25,7 +25,7 @@ Thereafter activate that environment.
 
 ## Local development
 
-With the virtualenv activated, install requirements (once).
+With the virtualenv activated, install requirements.
 
     $ pip install -r requirements.txt -r requirements_dev.txt
 
