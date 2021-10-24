@@ -28,10 +28,16 @@ Thereafter activate that environment.
 With the virtualenv activated, install requirements (once).
 
     $ pip install -r requirements.txt
+    $ pip install -r requirements_dev.txt
 
-Keep the code clean.
+To run the dev server:
+
+    $ FLASK_APP=wsgi flask run
+
+Keep the code clean. Before commit:
 
     $ flake8
+
 
 ## Building a VM
 
