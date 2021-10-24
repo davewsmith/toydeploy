@@ -205,4 +205,5 @@ list.
 
 Added `ansible-lint` and cleaned warnings. Only had to `#noqa` one of them,
 since pulling from HEAD is the point at the moment. Eventually, provisioning
-will pull from a release tag.
+will pull from a release tag. Best practice is to call the playbooks folder
+`playbooks`, so adopting that.

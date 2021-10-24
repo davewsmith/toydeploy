@@ -9,22 +9,22 @@
 
   tasks:
 
-    - name: Show all gathered facts.
+    - name: Show gathered facts.
       debug:
         var: ansible_facts
       when: false
 
-    - name: Show who and were we're provisioning to.
+    - name: Reminder who we are on the client.
       debug:
         msg: "{{ ansible_user }}@{{ ansible_facts.hostname }} on {{ ansible_facts.lsb.description }}"
 
-    - name: Get free disk space on the client.
+    - name: Get free disk space.
       command:
         cmd: df -h
       register: df
       changed_when: false
 
-    - name: Show free disk space on the client.
+    - name: Show free disk space.
       debug: var=df.stdout_lines
 
     - name: Update apt cache.

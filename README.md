@@ -43,7 +43,7 @@ Keep the code clean. Before commit:
 
 Keep provisioning clean. Before commit:
 
-    $ ansible-lint --offline playbooks/main.yml
+    $ ansible-lint playbooks/main.yml
 
 ## Building a VM
 
