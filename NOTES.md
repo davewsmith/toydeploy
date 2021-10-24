@@ -1,6 +1,6 @@
 ## To Do
 
- * Deploy and configure uwsgi and related systemd services
+ * Sort out why logging from the app is making it into the logs. (I dimly remember this being something stupid.)
  * Add skeletal tests
  * Add database
    - this'll cause us to split provisioning into roles (webserver, db)
