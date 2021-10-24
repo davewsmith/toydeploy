@@ -2,3 +2,4 @@ flask_testing
 blinker
 pytest
 flake8
+ansible-lint

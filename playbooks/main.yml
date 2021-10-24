@@ -19,7 +19,7 @@
         msg: "{{ ansible_user }}@{{ ansible_facts.hostname }} on {{ ansible_facts.lsb.description }}"
 
     - name: Get free disk space on the client.
-      shell:
+      command:
         cmd: df -h
       register: df
       changed_when: false
@@ -35,7 +35,7 @@
     - name: Install platform dependencies.
       apt:
         name: '{{ item }}'
-        state: latest
+        state: present
       with_items:
         - python3-pip
         - python-virtualenv
@@ -46,6 +46,7 @@
       git:
         repo: 'https://github.com/{{ github_account }}/{{ app_name }}.git'
         dest: '{{ app_name }}'
+        version: HEAD  # noqa git-latest
         depth: 1
 
     - name: Install app requirements.
@@ -77,6 +78,7 @@
       template:
         src: uwsgi_app.ini.j2
         dest: /etc/uwsgi/apps-available/uwsgi_app.ini
+        mode: 0644
 
     - name: Enable uwsgi app.
       become: false
@@ -89,6 +91,7 @@
       template:
         src: uwsgi.service.j2
         dest: /etc/systemd/system/uwsgi.service
+        mode: 0644
 
     - name: Restart uwsgi service.
       systemd:
@@ -100,7 +103,7 @@
     - name: Install nginx.
       apt:
         name: nginx
-        state: latest
+        state: present
 
     - name: Remove default nginx configuration.
       file:
@@ -111,6 +114,7 @@
       template:
         src: app.j2
         dest: /etc/nginx/sites-available/app
+        mode: 0644
 
     - name: Add enable nginx configuration for app.
       file:

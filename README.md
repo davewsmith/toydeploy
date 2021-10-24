@@ -41,6 +41,9 @@ Keep the code clean. Before commit:
 
     $ flake8
 
+Keep provisioning clean. Before commit:
+
+    $ ansible-lint --offline playbooks/main.yml
 
 ## Building a VM
 
@@ -59,14 +62,14 @@ I'm using existing Pis that already have my public key installed. Otherwise, `ss
 With the virtual environment activated,
 
     $ ansible -i inventory_pi -m shell -a "df -h" all
-    $ ansible-playbook -i inventory_pi provision/site.yml
+    $ ansible-playbook -i inventory_pi playbooks/main.yml
 
 ## TODO: Deploy onto an EC2 instance
 
 Which I'll need to provision by hand (Terraform being out of scope at the moment),
 and then `ssh-copy-id` my public key onto the instance.
 
-    $ ansible-playbook -i inventory_ec2 provision/site.yml
+    $ ansible-playbook -i inventory_ec2 playbooks/main.yml
 
 ## Caveat Lector
 

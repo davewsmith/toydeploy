@@ -202,3 +202,7 @@ to cope with at some point.
 
 First, a bit of tidying. Moved the goalposts by adding HTTPS to the To Do
 list.
+
+Added `ansible-lint` and cleaned warnings. Only had to `#noqa` one of them,
+since pulling from HEAD is the point at the moment. Eventually, provisioning
+will pull from a release tag.
