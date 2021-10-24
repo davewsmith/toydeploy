@@ -1,0 +1,18 @@
+[uwsgi]
+# uid = www-data
+# gid = www-data
+
+chdir = {{ app_dir }}
+home = {{ app_dir }}/venv
+module = wsgi:app
+
+master = true
+processes = 1
+threads = 2
+
+socket = /tmp/uwsgi.socket
+chmod-socket = 777
+vacuum = false
+
+logger = file:/var/log/uwsgi/app.log
+

@@ -155,9 +155,18 @@ Decided to mount `.` as `/vagrant`, and provision to `/home/vagrant/`.
 Not the way I'm used to working in a VM, but the VM practices I was introduced to may have been quirky.
 This gets rid of the itch from day 3.
 
+Got the app up and serving requests (`http://localhost:8080/` from the VM).
+
+There are a few warts in provisioning that will get revisited when deploy becomes re-deploy. The order of operations needs vetting.
+
+First deploy to the Pi failed because... that's odd... D'oh! After getting the App working in the VM I forgot to push to github. D'oh!
+
+Second deploy to the Pi succeed.
+
 ### Scope Creep
 
 This became an excuse to bundle in a fully-featured Flask app, because that's what I'll end up needing to provision.
 That's an excuse to revisit a few quirks in app structure...
 
 For purposes of making the app reusable, it has a replaceable `app/toy` blueprint.
+

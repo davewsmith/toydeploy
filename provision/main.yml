@@ -60,3 +60,74 @@
         virtualenv: '{{ app_dir }}/venv'
         virtualenv_python: python3
         requirements: '{{ app_dir }}/requirements.txt'
+
+    - name: ensure uwsgi directories are present
+      file:
+        path: '{{ item }}'
+        state: directory
+        owner: '{{ ansible_user }}'
+        group: '{{ ansible_user }}'
+        mode: 0755
+      with_items:
+        - /etc/uwsgi
+        - /etc/uwsgi/apps-available
+        - /etc/uwsgi/apps-enabled
+        - /var/log/uwsgi
+
+    - name: log rotation for uwsgi
+      debug: msg="todo template for /etc/logrotate.d/uwsgi"
+
+    - name: make app available to uwsgi
+      become: false
+      template:
+        src: uwsgi_app.ini.j2
+        dest: /etc/uwsgi/apps-available/uwsgi_app.ini
+
+    - name: enable uwsgi app
+      become: false
+      file:
+        src: /etc/uwsgi/apps-available/uwsgi_app.ini
+        path: /etc/uwsgi/apps-enabled/uwsgi_app.ini
+        state: link
+
+    - name: ensure uwsgi service is present
+      template:
+        src: uwsgi.service.j2
+        dest: /etc/systemd/system/uwsgi.service
+
+    - name: restart uwsgi service
+      systemd:
+        name: uwsgi
+        daemon_reload: true
+        # enabled: true
+        state: started
+
+    - name: install nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: remove default nginx configuration
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: add nginx configuration
+      template:
+        src: app.j2
+        dest: /etc/nginx/sites-available/app
+
+    - name: enable nginx configuration
+      file:
+        src: /etc/nginx/sites-available/app
+        path: /etc/nginx/sites-enabled/app
+        state: link
+
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+
+    - name: configure nginx
+      debug: msg="todo"
+
