@@ -1,18 +1,19 @@
 [uwsgi]
-# uid = www-data
-# gid = www-data
+uid = {{ ansible_user }}
+gid = {{ ansible_user }}
 
 chdir = {{ app_dir }}
 home = {{ app_dir }}/venv
 module = wsgi:app
 
 master = true
-processes = 1
+processes = 2
 threads = 2
 
 socket = /tmp/uwsgi.socket
 chmod-socket = 777
 vacuum = false
 
-logger = file:/var/log/uwsgi/app.log
-
+# logger = file:/var/log/uwsgi/app.log
+daemonize = /var/log/uwsgi/app.log
+log-format = %(addr) - %(user) [%(ltime)] "%(method) %(uri) %(proto)" %(status) %(size) "%(referer)" "%(uagent)"
