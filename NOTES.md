@@ -1,17 +1,22 @@
 ## To Do
 
- * Sort out why logging from the app is making it into the logs. (I dimly remember this being something stupid.)
- * Add database
-   - this'll cause us to split provisioning into roles (webserver, db)
+ * Sort out why logging from the app is making it into the logs.
+   (I dimly remember this being something stupid.)
+ * Add a database
+    - this'll cause us to split provisioning into roles (webserver, db)
  * Add database migrations
  * sort out how to go into "maintenance" mode while migrations are running
- * figure out how to introduce styling without muddying things up too badly (an app issue, not a provisioning issue)
+ * figure out how to introduce styling without muddying things up too badly
+   (an app issue, not a provisioning issue)
+ * Set up HTTPS for the Pi (https://tailscale.com/kb/1153/enabling-https/)
+    - Get letsencrypt into the provisioning
+ * Provision an EC2 instance, get a domain name, set up DNS
 
 ## Day 1
 
 Installed Ansible into a Python3 virtual environment.
 
-Decided which pi to play with, then created `inventory` as
+Decided which Pi to play with, then created `inventory` as
 
     [pi]
     pi3 ansible_user=pi
@@ -52,7 +57,8 @@ Now
         "ansible_user": "pi"
     }
 
-This might provide one way of distinguishing between being on a Pi or in a VM. (There's probably a best practice here.)
+This might provide one way of distinguishing between being on a Pi or in a VM.
+(There's probably a best practice here.)
 
 
 ## Day 2
@@ -69,10 +75,11 @@ builds a 1Gb Ubuntu 18.08 VM and runs a skeletal playbook.
 
 Nice: One of several ways to adapt to the environment.
 
-To keep things decluttered, playbook and associated stuff will go in `provision/`
+To keep things decluttered, playbook and associated stuff will go
+in `provision/`
 
-In anticipation of AWS, and wanting to avoid `all` meaning both Pis and EC2 instances,
-inventories are now `inventory_pi` and `inventory_ec2`
+In anticipation of AWS, and wanting to avoid `all` meaning both Pis and
+EC2 instances, inventories are now `inventory_pi` and `inventory_ec2`
 
     $ ansible -i inventory_pi -m debug -a "var=ansible_user" all
 
@@ -88,59 +95,74 @@ does. Huh?
 
 Wrote the question up and posted to serverfault.com
 
-And... got an answer fairly quickly. I needed to store the result in a var, then using `debug:` to display it.
-Odd that the Ansible provisioner in Vagrant behaves differently, but whatever.
+And... got an answer fairly quickly. I needed to store the result in a var,
+then using `debug:` to display it.  Odd that the Ansible provisioner in
+Vagrant behaves differently, but whatever.
 
 Next up, launch a micro instance on EC2.
 
 ## Day 3
 
-Yesterday's mystery explained by the `ansible.verbose = 'v'` in Vagrantfile, which caused extra output.
+Yesterday's mystery explained by the `ansible.verbose = 'v'` in Vagrantfile,
+which caused extra output.
 
-Developing in a VM is convenient. A common thing to do is let Vagrant mount the current directory as '/vagrant',
-but that's not in the spirit of a deploy (it's more like using a VM to contain damage). So, a decision:
-pull source from github when provisioning, or mount it? I think I'll come down on the side of using the VM as
-a development aide, and provision everything except source.
+Developing in a VM is convenient. A common thing to do is let Vagrant mount
+the current directory as '/vagrant', but that's not in the spirit of a deploy
+(it's more like using a VM to contain damage). So, a decision: pull source
+from github when provisioning, or mount it? I think I'll come down on the
+side of using the VM as a development aide, and provision everything except
+source.
 
-Side trip into ensuring nginx is installed, and putting test.html in place via `template:`.
+Side trip into ensuring nginx is installed, and putting test.html in place
+via `template:`.
 
-Pi3 isn't able to complete an `apt-get update`, possibly because it needs an O/S update, so switching to Pi4.
-Fortunately, nginx puts things in the same places on both Ubuntu and Raspberry Pi OS, so this part was easy.
+Pi3 isn't able to complete an `apt-get update`, possibly because it needs
+an O/S update, so switching to Pi4.  Fortunately, nginx puts things in the
+same places on both Ubuntu and Raspberry Pi OS, so this part was easy.
 
-Note to self: When before updating Pi3, consult `install.log` and preserve `wxbug`.
+Note to self: When before updating Pi3, consult `install.log`
+and preserve `wxbug`.
 
-Wired things up such that in a VM, the directory that holds the repo is mounted as `/home/vagrant/toydeploy`
+Wired things up such that in a VM,
+the directory that holds the repo is mounted as `/home/vagrant/toydeploy`
 
 On a Pi, the repo gets cloned to `/home/pi/toydeploy`.  The
 
     when: ansible_user != 'vagrant'
 
-that helps that work gives me a slight itch. On the lookout for a cleaner way.
+that helps that work gives me a slight itch.
+On the lookout for a cleaner way.
 
-Selective use of `when_changed: false` to avoid false changes (e.g., `df -h` doesn't have a side-effect).
+Selective use of `when_changed: false` to avoid false changes
+(e.g., `df -h` doesn't have a side-effect).
 Also added `cache_valid_time: 3600` to speed things along.
 
 ## Day 4
 
-Re-thinking the VM. Aside from isolating changes from the host (my laptop), the VM serves two purposes:
+Re-thinking the VM.
+Aside from isolating changes from the host (my laptop),
+the VM serves two purposes:
 
 1. an environment for quickly developing Ansible scripts, and
 2. a development environment for an App.
 
-These are somewhat in conflict. For app development, being able to edit the same files either inside
-the VM or outside (thanks to synced folders) is convenient. But that means skipping the `git clone`
-step in provisioning. If, instead of syncing the current directory I were to clone what's in github,
-I'd have to do app development exclusively inside the VM and set it up with my private key to push
-from there.
+These are somewhat in conflict.
+For app development, being able to edit the same files either inside the VM
+or outside (thanks to synced folders) is convenient.
+But that means skipping the `git clone` step in provisioning.
+If, instead of syncing the current directory I were to clone what's in github,
+I'd have to do app development exclusively inside the VM and set it up with
+my private key to push from there.
 
-Rustled up the parts (and the download) needed to flash the latest Rasperry Pi OS onto the older Pi
-I'm using, and a scratch Pi.
+Rustled up the parts (and the download) needed to flash the latest
+Rasperry Pi OS onto the older Pi I'm using, and a scratch Pi.
 
 Otherwise, no code today.
 
 ## Day 5
 
- * Updated an old Pi 2 with Raspberry Pi OS Lite and plugged it in to the home router
+ * Updated an old Pi 2 with Raspberry Pi OS Lite and plugged it in to the
+   home router
  * `ssh-copy-id` to it
  * installed and up'd `tailscale`
  * pointed `inventory_pi` at the Pi's tailscale ip
@@ -151,20 +173,32 @@ and voilà, a minimally provisioned Pi.
 ## Day 5
 
 Decided to mount `.` as `/vagrant`, and provision to `/home/vagrant/`.
-Not the way I'm used to working in a VM, but the VM practices I was introduced to may have been quirky.
+Not the way I'm used to working in a VM,
+but the VM practices I was introduced to may have been quirky.
 This gets rid of the itch from day 3.
 
 Got the app up and serving requests (`http://localhost:8080/` from the VM).
 
-There are a few warts in provisioning that will get revisited when deploy becomes re-deploy. The order of operations needs vetting.
+There are a few warts in provisioning that will get revisited when deploy
+becomes re-deploy. The order of operations needs vetting.
 
-First deploy to the Pi failed because... that's odd... D'oh! After getting the App working in the VM I forgot to push to github. D'oh!
+First deploy to the Pi failed because... that's odd...  D'oh!
+After getting the App working in the VM I forgot to push to github. D'oh!
 
 Second deploy to the Pi succeed.
 
 ### Scope Creep
 
-Because the intent is to provision a fully-featured Flask app, the door is open to to revisiting some quirks in way I've been structuring Flask apps.
+Because the intent is to provision a fully-featured Flask app, the door is
+open to to revisiting some quirks in way I've been structuring Flask apps.  
+For purposes of making the toy app reusable, I have it a skeletal `app/toy`
+blueprint.  I'm _thinking_ that sticking a layout app, containing only
+templates, at the front might work for isolating CSS framework dependencies,
+but that may be a hallucination. CSS, beyond serving it up, would be out of
+scope, except that handling it cleanly is an organizational issue I'll have
+to cope with at some point.
 
-For purposes of making the toy app reusable, I have it a skeletal `app/toy` blueprint. I'm _thinking_ that sticking a layout app, containing only templates, at the front might work for isolating CSS framework dependencies, but that may be a hallucination. CSS, beyond serving it up, would be out of scope, except that handling it cleanly is an organizational issue I'll have to cope with at some point.
+## Day 6
 
+First, a bit of tidying. Moved the goalposts by adding HTTPS to the To Do
+list.
