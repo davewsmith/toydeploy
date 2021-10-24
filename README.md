@@ -27,8 +27,7 @@ Thereafter activate that environment.
 
 With the virtualenv activated, install requirements (once).
 
-    $ pip install -r requirements.txt
-    $ pip install -r requirements_dev.txt
+    $ pip install -r requirements.txt -r requirements_dev.txt
 
 To run the dev server:
 
