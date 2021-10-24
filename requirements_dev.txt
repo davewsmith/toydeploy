@@ -1,2 +1,4 @@
+flask_testing
+blinker
 pytest
 flake8

@@ -33,6 +33,10 @@ To run the dev server:
 
     $ FLASK_APP=wsgi flask run
 
+To run tests:
+
+    $ pytest
+
 Keep the code clean. Before commit:
 
     $ flake8
