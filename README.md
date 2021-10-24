@@ -23,6 +23,16 @@ Thereafter activate that environment.
 
     $ . venv/bin/activate
 
+## Local development
+
+With the virtualenv activated, install requirements (once).
+
+    $ pip install -r requirements.txt
+
+Keep the code clean.
+
+    $ flake8
+
 ## Building a VM
 
 With the virtual environment activated,
