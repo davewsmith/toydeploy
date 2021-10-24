@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>{% block title %}Title here{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v={{ style_css_mtime }}" />
+</head>
+
+<body>
+<div class="wrapper">
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>
+

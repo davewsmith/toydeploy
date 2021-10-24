@@ -1,3 +1,13 @@
+## To Do
+
+ * Deploy and configure uwsgi and related systemd services
+ * Add skeletal tests
+ * Add database
+   - this'll cause us to split provisioning into roles (webserver, db)
+ * Add database migrations
+ * sort out how to go into "maintenance" mode while migrations are running
+ * figure out how to introduce styling without muddying things up too badly (an app issue, not a provisioning issue)
+
 ## Day 1
 
 Installed Ansible into a Python3 virtual environment.
@@ -144,3 +154,10 @@ and voilà, a minimally provisioned Pi.
 Decided to mount `.` as `/vagrant`, and provision to `/home/vagrant/`.
 Not the way I'm used to working in a VM, but the VM practices I was introduced to may have been quirky.
 This gets rid of the itch from day 3.
+
+### Scope Creep
+
+This became an excuse to bundle in a fully-featured Flask app, because that's what I'll end up needing to provision.
+That's an excuse to revisit a few quirks in app structure...
+
+For purposes of making the app reusable, it has a replaceable `app/toy` blueprint.
