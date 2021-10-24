@@ -165,8 +165,7 @@ Second deploy to the Pi succeed.
 
 ### Scope Creep
 
-This became an excuse to bundle in a fully-featured Flask app, because that's what I'll end up needing to provision.
-That's an excuse to revisit a few quirks in app structure...
+Because the intent is to provision a fully-featured Flask app, the door is open to to revisiting some quirks in way I've been structuring Flask apps.
 
-For purposes of making the app reusable, it has a replaceable `app/toy` blueprint.
+For purposes of making the toy app reusable, I have it a skeletal `app/toy` blueprint. I'm _thinking_ that sticking a layout app, containing only templates, at the front might work for isolating CSS framework dependencies, but that may be a hallucination. CSS, beyond serving it up, would be out of scope, except that handling it cleanly is an organizational issue I'll have to cope with at some point.
 
