@@ -56,13 +56,6 @@
         dest: '{{ app_dir }}/.env'
         mode: 0400
 
-    - name: Ensure the database directory is present
-      become: false
-      file:
-        path: '{{ app_dir }}/data'
-        state: directory
-        mode: 0700
-
     - name: Install app requirements.
       become: false
       pip:
@@ -70,6 +63,22 @@
         virtualenv: '{{ app_dir }}/venv'
         virtualenv_python: python3
         requirements: '{{ app_dir }}/requirements.txt'
+
+    - name: Ensure the database directory is present
+      become: false
+      file:
+        path: '{{ app_dir }}/data'
+        state: directory
+        mode: 0700
+
+    - name: Run database migrations
+      become: false
+      command:
+        chdir: '{{ app_dir }}'
+        cmd: flask db upgrade
+      environment:
+        FLASK_APP: wsgi
+      changed_when: false
 
     - name: Ensure uwsgi directories are present.
       file:
