@@ -2,7 +2,7 @@
 
 Working through what it takes to use Ansible to deploy a Flask app to a VM, to a Pi, and to an EC2 instance.
 
-Why? Because scripting installs with bash scripts is tedious, and I want to get some more experience with Ansible.
+Why? Because scripting installs with bash was getting tedious, and I wanted to get some more experience with Ansible.
 
 Follow the fun in [NOTES](NOTES.md).
 
