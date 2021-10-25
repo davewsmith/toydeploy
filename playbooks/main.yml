@@ -14,7 +14,7 @@
         var: ansible_facts
       when: false
 
-    - name: Reminder who we are on the client.
+    - name: Who we are on the client.
       debug:
         msg: "{{ ansible_user }}@{{ ansible_facts.hostname }} on {{ ansible_facts.lsb.description }}"
 
@@ -49,6 +49,20 @@
         version: HEAD  # noqa git-latest
         depth: 1
 
+    - name: Ensure .env is rendered
+      become: false
+      template:
+        src: dotenv.j2
+        dest: '{{ app_dir }}/.env'
+        mode: 0400
+
+    - name: Ensure the database directory is present
+      become: false
+      file:
+        path: '{{ app_dir }}/data'
+        state: directory
+        mode: 0700
+
     - name: Install app requirements.
       become: false
       pip:
@@ -73,14 +87,14 @@
     - name: Set up log rotation for uwsgi.
       debug: msg="todo template for /etc/logrotate.d/uwsgi"
 
-    - name: Ensure uwsgi app config is in place.
+    - name: Ensure uwsgi app config is present.
       become: false
       template:
         src: uwsgi_app.ini.j2
         dest: /etc/uwsgi/apps-available/uwsgi_app.ini
         mode: 0644
 
-    - name: Enable uwsgi app.
+    - name: Ensure uwsgi app config is enabled.
       become: false
       file:
         src: /etc/uwsgi/apps-available/uwsgi_app.ini
@@ -100,23 +114,23 @@
         # enabled: true
         state: started
 
-    - name: Install nginx.
+    - name: Ensure nginx is present.
       apt:
         name: nginx
         state: present
 
-    - name: Remove default nginx configuration.
+    - name: Ensure default nginx configuration is removed.
       file:
         path: /etc/nginx/sites-enabled/default
         state: absent
 
-    - name: Add nginx configuration for app.
+    - name: Ensure nginx config for app is present.
       template:
         src: app.j2
         dest: /etc/nginx/sites-available/app
         mode: 0644
 
-    - name: Add enable nginx configuration for app.
+    - name: Enable nginx config for app is enabled.
       file:
         src: /etc/nginx/sites-available/app
         path: /etc/nginx/sites-enabled/app

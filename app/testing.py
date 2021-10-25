@@ -1,14 +1,13 @@
 import flask_testing
 
-from app import create_app
+from app import create_app, db
 from config import Config
 
 
 class TestConfig(Config):
     # TESTING = True
     # WTF_CSRF_ENABLED = False
-    # SQLALCHEMY_DATABASE_URI = 'sqlite://'
-    pass
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 
 class FlaskTest(flask_testing.TestCase):
@@ -17,10 +16,8 @@ class FlaskTest(flask_testing.TestCase):
         return create_app(TestConfig)
 
     def setUp(self):
-        # db.create_all()
-        pass
+        db.create_all()
 
     def tearDown(self):
-        # db.session.remove()
-        # db.drop_all()
-        pass
+        db.session.remove()
+        db.drop_all()

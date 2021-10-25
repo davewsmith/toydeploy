@@ -1,2 +1,5 @@
 Flask
+flask-sqlalchemy
+flask-migrate
+python-dotenv
 uwsgi

@@ -1,13 +1,10 @@
 ## To Do
 
- * Sort out why logging from the app is making it into the logs.
-   (I dimly remember this being something stupid.)
- * Add a database
-    - this'll cause us to split provisioning into roles (webserver, db)
- * Add database migrations
- * sort out how to go into "maintenance" mode while migrations are running
- * figure out how to introduce styling without muddying things up too badly
+ * Refactor main.yml into Roles, and/or divide it into provision.yml and deploy.yml
+ * Sort out how to go into "maintenance" mode while migrations are running
+ * Figure out how to introduce styling without muddying things up too badly
    (an app issue, not a provisioning issue)
+ * Make logging consistent (an app issue)
  * Set up HTTPS for the Pi (https://tailscale.com/kb/1153/enabling-https/)
     - Get letsencrypt into the provisioning
  * Provision an EC2 instance, get a domain name, set up DNS
