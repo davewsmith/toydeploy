@@ -37,13 +37,27 @@ To run tests:
 
     $ pytest
 
-Keep the code clean. Before commit:
+When adding/changing models, get a test running first, since that uses
+an in-memory SQLite3 database. Then
+
+    $ FLASK_APP=wsgi flask db migrate -m 'what changed'
+
+The corresponding `flask db upgrade` is doing by provisioning.
+
+If it's ever necessary to blow away migrations and start over, (say, when
+it's time to remove the toy models),
+
+    $ FLASK_APP=wsgi flask db init
+
+resets the world.
+
+Keep the code clean. Before commit
 
     $ flake8
 
-Keep provisioning clean. Before commit:
+can help avoid embarrasing mistakes, as can
 
-    $ ansible-lint playbooks/main.yml
+    $ ansible-lint playbooks
 
 ## Building a VM
 

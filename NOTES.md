@@ -1,6 +1,8 @@
 ## To Do
 
  * Refactor main.yml into Roles, and/or divide it into provision.yml and deploy.yml
+ * Add a cron job to inject toy data.
+ * Add background tasks (Rq?)
  * Sort out how to go into "maintenance" mode while migrations are running
  * Figure out how to introduce styling without muddying things up too badly
    (an app issue, not a provisioning issue)
@@ -204,3 +206,11 @@ Added `ansible-lint` and cleaned warnings. Only had to `#noqa` one of them,
 since pulling from HEAD is the point at the moment. Eventually, provisioning
 will pull from a release tag. Best practice is to call the playbooks folder
 `playbooks`, so adopting that.
+
+Getting database (SQLite3) support in was a bit of a slog, but it's in and
+working with migrations. There's probably some way of detecting whether a
+migration actuall did anything, but I'll leave that for another day.
+
+Next up, split up main.yml into pieces. I like the idea of separating
+provision from deploy. I like the idea starting to support a separate
+database server, but that may be getting too far ahead of things.
