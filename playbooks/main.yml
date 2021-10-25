@@ -75,7 +75,7 @@
       become: false
       command:
         chdir: '{{ app_dir }}'
-        cmd: flask db upgrade
+        cmd: venv/bin/flask db upgrade
       environment:
         FLASK_APP: wsgi
       changed_when: false
