@@ -4,5 +4,12 @@
 
 {% block content %}
 <h1>Behold, a Toy App</h1>
+
+<ul>
+{% for toy in toys %}
+<li>{{ toy.toy_data }}</li>
+{% endfor %}
+</ul>
+
 {% endblock %}
 
