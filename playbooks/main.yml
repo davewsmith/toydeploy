@@ -121,7 +121,7 @@
         name: uwsgi
         daemon_reload: true
         # enabled: true
-        state: started
+        state: restarted
 
     - name: Ensure nginx is present.
       apt:
