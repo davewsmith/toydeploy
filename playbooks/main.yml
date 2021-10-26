@@ -7,6 +7,20 @@
     app_name: toydeploy
     app_dir: '/home/{{ ansible_user }}/{{ app_name }}'
 
+  handlers:
+
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+
+    - name: restart uwsgi
+      systemd:
+        name: uwsgi
+        daemon_reload: true
+        # enabled: true
+        state: restarted
+
   tasks:
 
     - name: Show gathered facts.
@@ -49,6 +63,7 @@
         dest: '{{ app_name }}'
         version: HEAD  # noqa git-latest
         depth: 1
+      notify: restart uwsgi
 
     - name: Ensure .env is rendered
       become: false
@@ -56,6 +71,7 @@
         src: dotenv.j2
         dest: '{{ app_dir }}/.env'
         mode: 0400
+      notify: restart uwsgi
 
     - name: Install app requirements.
       become: false
@@ -129,13 +145,7 @@
         src: uwsgi.service.j2
         dest: /etc/systemd/system/uwsgi.service
         mode: 0644
-
-    - name: Restart uwsgi service.
-      systemd:
-        name: uwsgi
-        daemon_reload: true
-        # enabled: true
-        state: restarted
+        notify: restart uwsgi
 
     - name: Ensure nginx is present.
       apt:
@@ -152,16 +162,10 @@
         src: app.j2
         dest: /etc/nginx/sites-available/app
         mode: 0644
+        notify: restart nginx
 
     - name: Enable nginx config for app is enabled.
       file:
         src: /etc/nginx/sites-available/app
         path: /etc/nginx/sites-enabled/app
         state: link
-
-    # TODO make this a handler
-    - name: Restart nginx.
-      systemd:
-        name: nginx
-        state: restarted
-
