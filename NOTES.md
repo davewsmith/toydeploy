@@ -220,4 +220,6 @@ database server, but that may be getting too far ahead of things.
 Solved the problem of the db getting blown away on a `vagrant destroy`
 by mounting `./data` as `/opt/data`.
 
-Added a one-time load of data into a fresh database.
+Added a one-time bootstrap of data into a fresh database.
+
+Turned restart tasks into handlers.
