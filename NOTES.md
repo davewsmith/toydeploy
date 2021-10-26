@@ -214,3 +214,10 @@ migration actuall did anything, but I'll leave that for another day.
 Next up, split up main.yml into pieces. I like the idea of separating
 provision from deploy. I like the idea starting to support a separate
 database server, but that may be getting too far ahead of things.
+
+## Day 7
+
+Solved the problem of the db getting blown away on a `vagrant destroy`
+by mounting `./data` as `/opt/data`.
+
+Added a one-time load of data into a fresh database.

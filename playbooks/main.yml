@@ -40,8 +40,9 @@
         - python3-pip
         - python-virtualenv
         - git
+        - sqlite3
 
-    - name: Clone the source respository.
+    - name: Clone the source repository.
       become: false
       git:
         repo: 'https://github.com/{{ github_account }}/{{ app_name }}.git'
@@ -65,11 +66,17 @@
         requirements: '{{ app_dir }}/requirements.txt'
 
     - name: Ensure the database directory is present
-      become: false
       file:
-        path: '{{ app_dir }}/data'
+        path: '/opt/data'
         state: directory
+        owner: '{{ ansible_user }}'
+        group: '{{ ansible_user }}'
         mode: 0700
+
+    - name: Detect database presence
+      stat:
+        path: '/opt/data/app.db'
+      register: db_path
 
     - name: Run database migrations
       become: false
@@ -79,6 +86,13 @@
       environment:
         FLASK_APP: wsgi
       changed_when: false
+
+    - name: Initial database bootstrap
+      become: false
+      shell:
+        chdir: '{{ app_dir }}'
+        cmd:  sqlite3 /opt/data/app.db < bootstrap.sql
+      when: not db_path.stat.exists
 
     - name: Ensure uwsgi directories are present.
       file:
