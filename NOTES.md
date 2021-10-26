@@ -223,3 +223,8 @@ by mounting `./data` as `/opt/data`.
 Added a one-time bootstrap of data into a fresh database.
 
 Turned restart tasks into handlers.
+
+Hmm... enabling `vagrant-cachier` didn't seem to move the needs on VM build
+or provision time. It's about 7 minutes to build a fresh VM, and 1:20 to
+do a no-change provision. Time to split the playbook into provision and
+deploy parts.
