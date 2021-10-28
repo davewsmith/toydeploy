@@ -56,6 +56,14 @@
         - git
         - sqlite3
 
+    - name: Install platform Python dependencies
+      pip:
+        name: '{{ item }}'
+        state: present
+        executable: pip3
+      with_items:
+        - uwsgi
+
     - name: Clone the source repository.
       become: false
       git:

@@ -228,3 +228,8 @@ Hmm... enabling `vagrant-cachier` didn't seem to move the needs on VM build
 or provision time. It's about 7 minutes to build a fresh VM, and 1:20 to
 do a no-change provision. Time to split the playbook into provision and
 deploy parts.
+
+## Day 8
+
+Install uwsgi globally and use it from there. Depending on a particular
+app's virtualenv feels wrong.
