@@ -1,0 +1,107 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    github_account: davewsmith
+    app_name: toydeploy
+    app_dir: '/home/{{ ansible_user }}/{{ app_name }}'
+
+  handlers:
+
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+
+    - name: restart uwsgi
+      systemd:
+        name: uwsgi
+        daemon_reload: true
+        state: restarted
+
+  tasks:
+    # Intentially duplicated from provision.yml
+    - name: Update apt cache.
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Clone the source repository.
+      become: false
+      git:
+        repo: 'https://github.com/{{ github_account }}/{{ app_name }}.git'
+        dest: '{{ app_name }}'
+        version: HEAD  # noqa git-latest
+        depth: 1
+      notify: restart uwsgi
+
+    - name: Ensure .env is rendered
+      become: false
+      template:
+        src: dotenv.j2
+        dest: '{{ app_dir }}/.env'
+        mode: 0400
+      notify: restart uwsgi
+
+    - name: Install app requirements.
+      become: false
+      pip:
+        # venv is in .gitignore
+        virtualenv: '{{ app_dir }}/venv'
+        virtualenv_python: python3
+        requirements: '{{ app_dir }}/requirements.txt'
+
+    - name: Detect database presence
+      stat:
+        path: '/opt/data/app.db'
+      register: db_path
+
+    - name: Initial database bootstrap
+      become: false
+      shell:
+        chdir: '{{ app_dir }}'
+        cmd:  sqlite3 /opt/data/app.db < bootstrap.sql
+      when: not db_path.stat.exists
+
+    - name: Run database migrations
+      become: false
+      command:
+        chdir: '{{ app_dir }}'
+        cmd: venv/bin/flask db upgrade
+      environment:
+        FLASK_APP: wsgi
+      changed_when: false
+
+    - name: Ensure uwsgi app config is present.
+      become: false
+      template:
+        src: uwsgi_app.ini.j2
+        dest: /etc/uwsgi/apps-available/uwsgi_app.ini
+        mode: 0644
+
+    - name: Ensure uwsgi app config is enabled.
+      become: false
+      file:
+        src: /etc/uwsgi/apps-available/uwsgi_app.ini
+        path: /etc/uwsgi/apps-enabled/uwsgi_app.ini
+        state: link
+      notify: restart uwsgi
+
+    - name: Ensure default nginx configuration is removed.
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Ensure nginx config for app is present.
+      template:
+        src: app.j2
+        dest: /etc/nginx/sites-available/app
+        mode: 0644
+      notify: restart nginx
+
+    - name: Ensure nginx config for app is present.
+      file:
+        src: /etc/nginx/sites-available/app
+        path: /etc/nginx/sites-enabled/app
+        state: link

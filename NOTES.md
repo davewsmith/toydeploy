@@ -1,6 +1,6 @@
 ## To Do
 
- * Refactor main.yml into Roles, and/or divide it into provision.yml and deploy.yml
+ * Refactor main.yml into Roles.
  * Add a cron job to inject toy data.
  * Add background tasks (Rq?)
  * Sort out how to go into "maintenance" mode while migrations are running
@@ -233,3 +233,8 @@ deploy parts.
 
 Install uwsgi globally and use it from there. Depending on a particular
 app's virtualenv feels wrong.
+
+Split playbooks/main.yml into playbooks/provision.yml
+and playbooks/deploy.yml
+
+Still thinking about roles.

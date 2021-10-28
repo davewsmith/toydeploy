@@ -1,0 +1,90 @@
+---
+- hosts: all
+  become: true
+
+  vars:
+    app_name: toydeploy
+
+  tasks:
+    - name: Show gathered facts.
+      debug:
+        var: ansible_facts
+      when: false
+
+    - name: Who we are on the client.
+      debug:
+        msg: "{{ ansible_user }}@{{ ansible_facts.hostname }} on {{ ansible_facts.lsb.description }}"
+
+    - name: Get free disk space.
+      command:
+        cmd: df -h
+      register: df
+      changed_when: false
+
+    - name: Show free disk space.
+      debug: var=df.stdout_lines
+
+    - name: Update apt cache.
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install platform dependencies.
+      apt:
+        name: '{{ item }}'
+        state: present
+      with_items:
+        - python3-pip
+        - python-virtualenv
+        - git
+        - sqlite3
+
+    - name: Install platform Python dependencies
+      pip:
+        name: '{{ item }}'
+        state: present
+        executable: pip3
+      with_items:
+        - uwsgi
+
+    - name: Ensure the database directory is present
+      file:
+        path: '/opt/data'
+        state: directory
+        owner: '{{ ansible_user }}'
+        group: '{{ ansible_user }}'
+        mode: 0700
+
+    - name: Ensure uwsgi directories are present.
+      file:
+        path: '{{ item }}'
+        state: directory
+        owner: '{{ ansible_user }}'
+        group: '{{ ansible_user }}'
+        mode: 0755
+      with_items:
+        - /etc/uwsgi
+        - /etc/uwsgi/apps-available
+        - /etc/uwsgi/apps-enabled
+        - /var/log/uwsgi
+
+    - name: Set up log rotation for uwsgi.
+      debug: msg="todo template for /etc/logrotate.d/uwsgi"
+
+    - name: Ensure uwsgi service is present.
+      template:
+        src: uwsgi.service.j2
+        dest: /etc/systemd/system/uwsgi.service
+        mode: 0644
+
+    - name: Ensure that uwsgi service is enabled and stopped.
+      systemd:
+        name: uwsgi
+        daemon_reload: true
+        enabled: true
+        state: stopped
+
+    - name: Ensure nginx is present.
+      apt:
+        name: nginx
+        state: present
