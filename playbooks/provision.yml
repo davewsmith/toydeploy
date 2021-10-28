@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: true
-
+  vars_files: vars.yml
   vars:
     app_name: toydeploy
 
@@ -49,7 +49,7 @@
 
     - name: Ensure the database directory is present
       file:
-        path: '/opt/data'
+        path: '{{ db_dir }}'
         state: directory
         owner: '{{ ansible_user }}'
         group: '{{ ansible_user }}'

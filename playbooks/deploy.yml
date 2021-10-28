@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: true
-
+  vars_files: vars.yml
   vars:
     github_account: davewsmith
     app_name: toydeploy
@@ -54,14 +54,14 @@
 
     - name: Detect database presence
       stat:
-        path: '/opt/data/app.db'
+        path: '{{ db_dir }}/app.db'
       register: db_path
 
     - name: Initial database bootstrap
       become: false
       shell:
         chdir: '{{ app_dir }}'
-        cmd:  sqlite3 /opt/data/app.db < bootstrap.sql
+        cmd:  sqlite3 {{ db_dir }}/app.db < bootstrap.sql
       when: not db_path.stat.exists
 
     - name: Run database migrations
