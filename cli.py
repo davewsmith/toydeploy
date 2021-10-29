@@ -1,4 +1,5 @@
 from datetime import datetime
+import uuid
 
 from app import create_app, db
 from app.toy.models import ToyData
@@ -19,7 +20,7 @@ def make_shell_context():
 
 @app.cli.command(short_help="Add a Toy")
 def toy():
-    toy = ToyData(created_at=datetime.now(), toy_data="Toy")
+    toy = ToyData(created_at=datetime.now(), toy_data=str(uuid.uuid1()))
     db.session.add(toy)
     db.session.commit()
     print("Toy added")
