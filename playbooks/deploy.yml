@@ -1,10 +1,8 @@
 ---
 - hosts: all
   become: true
-  vars_files: vars.yml
   vars:
     github_account: davewsmith
-    app_name: toydeploy
     app_dir: '/home/{{ ansible_user }}/{{ app_name }}'
 
   handlers:

@@ -1,9 +1,6 @@
 ---
 - hosts: all
   become: true
-  vars_files: vars.yml
-  vars:
-    app_name: toydeploy
 
   tasks:
     - name: Show gathered facts.

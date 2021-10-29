@@ -238,3 +238,7 @@ Split playbooks/main.yml into playbooks/provision.yml
 and playbooks/deploy.yml
 
 Still thinking about roles.
+
+## Day 9
+
+Not happy with how I did vars, so added `playbooks/group_vars/all`.

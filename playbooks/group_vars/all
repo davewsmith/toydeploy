@@ -1,0 +1,3 @@
+---
+app_name: toydeploy
+db_dir: '/opt/data'
