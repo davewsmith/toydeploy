@@ -103,3 +103,11 @@
         src: /etc/nginx/sites-available/app
         path: /etc/nginx/sites-enabled/app
         state: link
+
+    - name: Ensure cron script for Toy deliver is present
+      become: false
+      cron:
+        name: toy delivery
+        minute: "0,10,20,30,40,50"
+        job: "cd ${{ app_dir }} ; FLASK_APP=cli ./venv/bin/flask toy"
+        state: present
