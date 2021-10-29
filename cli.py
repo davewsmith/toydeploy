@@ -23,4 +23,3 @@ def toy():
     toy = ToyData(created_at=datetime.now(), toy_data=str(uuid.uuid1()))
     db.session.add(toy)
     db.session.commit()
-    print("Toy added")
