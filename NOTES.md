@@ -1,7 +1,6 @@
 ## To Do
 
  * Refactor main.yml into Roles.
- * Add a cron job to inject toy data.
  * Add background tasks (Rq?)
  * Sort out how to go into "maintenance" mode while migrations are running
  * Figure out how to introduce styling without muddying things up too badly
