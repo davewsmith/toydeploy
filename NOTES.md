@@ -252,5 +252,28 @@ use some one of the nodejs-based CSS tools, or pick one of the new hotness
 CSS frameworks, or just screw-it-all and use Bootstrap. But since this
 is almost naturaly morphing into a starter kit, choose one must. Dammit.
 
+## Day 11
 
+Added 404 and 500 handlers.
 
+A review of how Flask finds templates shows that the search order is
+fist in the `templates` directory for the main app, then in Blueprints
+that have `templates` directories, in the order the Blueprint was
+registered.
+
+A sane scheme seems to be to have the app own layout, in the form of
+the CSS framework and the base templates that app-specific Blueprints
+will extend.
+Reusable Blueprints (e.g., `auth`, `errors`) provide generic templates
+that are functioning placeholders to show what form elements
+the corresponding handlers require. These generic templates are then
+overriden at the app level with layout-aware ones. The bet is that
+the maintence burden from having to update or create new override
+templates when the reusable blueprints are modified will be low.
+
+Whatever layout scheme the sample project picks can be replaced by
+supplying new CSS, new base templates, new override templates for
+any resuable frameworks, and new templates in the new
+app-specific Blueprints. 
+
+This seems like a workable scheme.
