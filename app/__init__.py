@@ -59,6 +59,9 @@ def create_app(config_class=Config):
 
     migrate.init_app(app, db)
 
+    from app.errors import bp as errors_bp  # noqa
+    app.register_blueprint(errors_bp)
+
     from app.toy import bp as toy_bp  # noqa
     app.register_blueprint(toy_bp)
 
