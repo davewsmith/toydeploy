@@ -241,3 +241,16 @@ Still thinking about roles.
 ## Day 9
 
 Not happy with how I did vars, so added `playbooks/group_vars/all`.
+
+## Day 10
+
+Right on schedule, the point in a project that forces an issue on layout,
+and things grind to a halt while I ponder how to keep the choice of CSS
+framework from being so intrusive on the templates. This is about playing
+with Ansible and deploys, not about struggling with whether or not to
+use some one of the nodejs-based CSS tools, or pick one of the new hotness
+CSS frameworks, or just screw-it-all and use Bootstrap. But since this
+is almost naturaly morphing into a starter kit, choose one must. Dammit.
+
+
+
