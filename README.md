@@ -78,6 +78,12 @@ With the virtual environment activated,
     $ ansible -i inventory_pi -m shell -a "df -h" all
     $ ansible-playbook -i inventory_pi playbooks/main.yml
 
+The playbook is divided into a provision part and a deploy part. After the the first run,
+
+    $ ansible-playbook -i inventory_pi playbooks/deploy.yml
+
+is sufficient for deploying code changes.
+
 ## TODO: Deploy onto an EC2 instance
 
 Which I'll need to provision by hand (Terraform being out of scope at the moment),
