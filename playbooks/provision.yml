@@ -85,3 +85,9 @@
       apt:
         name: nginx
         state: present
+
+    - name: Keep nginx logs for 30 days
+      lineinfile:
+        path: /etc/logrotate.d/nginx
+        regexp: "rotate \\d+"
+        line: "        rotate 30"
