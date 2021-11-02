@@ -277,3 +277,9 @@ any resuable frameworks, and new templates in the new
 app-specific Blueprints. 
 
 This seems like a workable scheme.
+
+# Day 12
+
+An excuse to use `lininfile`. Modify the log rotation script that
+comes with `nginx` to keep logs for 30 days instead of 14.
+
