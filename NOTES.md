@@ -293,4 +293,6 @@ Terraform is a different project.
 
 ## Round 14 - Side Quest
 
-Set up a github action to run flake8 and pytest.
+Set up a github action to run flake8 and pytest. And a build badge.
+
+That was incredibly easy. Adding ansible-lint.
