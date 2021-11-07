@@ -290,3 +290,7 @@ Looking around at advice on how to both use Roles and keep
 but not a lot of clarify. Here, 'provisioning' means the
 part of deployment that's mostly untouched onced set up.
 Terraform is a different project.
+
+## Round 14 - Side Quest
+
+Set up a github action to run flake8 and pytest.
