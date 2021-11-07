@@ -295,4 +295,5 @@ Terraform is a different project.
 
 Set up a github action to run flake8 and pytest. And a build badge.
 
-That was incredibly easy. Adding ansible-lint.
+That was incredibly easy. Adding ansible-lint. Yay, it failed,
+because it needs Ansible.
