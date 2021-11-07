@@ -293,15 +293,15 @@ Terraform is a different project.
 
 ## Round 14 - Side Quest
 
-Set up a github action to run flake8 and pytest. And a build badge.
+Set up a github action to run flake8 and pytest, and add a build badge.
 
-That was incredibly easy.
+That was incredibly easy. Yay, github!
 
 Adding ansible-lint. Yay, it failed, because it needs Ansible.
-Installed ansible (which slows the build waaaay down) and it passes.
+Installed Ansible (which slows the build waaaay down) and tests pass.
 
-Out of a possibly misplaced sense of kindness towards github,
-only run tests on a pull request, so that edits to NOTES don't
-burn cycles needlessly.
+Out of a possibly misplaced sense of wanting to avoid burning
+cycles needlessly, only run tests on pull requests, so that edits
+to these notes don't trigger a test run.
 
-
+From here on, significant work gets done in branches.
