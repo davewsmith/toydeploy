@@ -28,8 +28,8 @@ prompted for a password, then copied my public key.
 Now I can talk to the Pi.
 
     $ ansible -i inventory -m shell -a "df -h" pi3
-    [DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.9 (default, 
-    Jan 26 2021, 15:33:00) [GCC 8.4.0]. This feature will be removed from ansible-core in version 2.12. Deprecation warnings can be disabled by 
+    [DEPRECATION WARNING]: Ansible will require Python 3.8 or newer on the controller starting with Ansible 2.12. Current version: 3.6.9 (default,
+    Jan 26 2021, 15:33:00) [GCC 8.4.0]. This feature will be removed from ansible-core in version 2.12. Deprecation warnings can be disabled by
     setting deprecation_warnings=False in ansible.cfg.
     pi3 | CHANGED | rc=0 >>
     Filesystem      Size  Used Avail Use% Mounted on
@@ -188,7 +188,7 @@ Second deploy to the Pi succeed.
 ### Scope Creep
 
 Because the intent is to provision a fully-featured Flask app, the door is
-open to to revisiting some quirks in way I've been structuring Flask apps.  
+open to to revisiting some quirks in way I've been structuring Flask apps.
 For purposes of making the toy app reusable, I have it a skeletal `app/toy`
 blueprint.  I'm _thinking_ that sticking a layout app, containing only
 templates, at the front might work for isolating CSS framework dependencies,
@@ -274,12 +274,19 @@ templates when the reusable blueprints are modified will be low.
 Whatever layout scheme the sample project picks can be replaced by
 supplying new CSS, new base templates, new override templates for
 any resuable frameworks, and new templates in the new
-app-specific Blueprints. 
+app-specific Blueprints.
 
 This seems like a workable scheme.
 
-# Day 12
+## Day 12
 
 An excuse to use `lininfile`. Modify the log rotation script that
 comes with `nginx` to keep logs for 30 days instead of 14.
 
+## Round 13
+
+Looking around at advice on how to both use Roles and keep
+'provisioning' and 'deployment' separate, and finding opinions
+but not a lot of clarify. Here, 'provisioning' means the
+part of deployment that's mostly untouched onced set up.
+Terraform is a different project.
