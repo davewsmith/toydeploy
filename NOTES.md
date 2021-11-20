@@ -1,14 +1,16 @@
 ## To Do
 
+ * Provision an EC2 instance using Terraform
+ * Using Ansible's `amazon.aws` collection to build a dynamic inventory
  * Refactor main.yml into Roles.
  * Add background tasks (Rq?)
  * Sort out how to go into "maintenance" mode while migrations are running
  * Figure out how to introduce styling without muddying things up too badly
    (an app issue, not a provisioning issue)
  * Make logging consistent (an app issue)
+ * Get a domain name, and set up DNS for the EC2 instance
  * Set up HTTPS for the Pi (https://tailscale.com/kb/1153/enabling-https/)
     - Get letsencrypt into the provisioning
- * Provision an EC2 instance, get a domain name, set up DNS
 
 ## Day 1
 
@@ -305,3 +307,12 @@ cycles needlessly, only run tests on pull requests, so that edits
 to these notes don't trigger a test run.
 
 From here on, significant work gets done in branches.
+
+## Round 14 - A kinda/sorta side quest
+
+Reading up on Terraform to provision ec2 instances.
+
+The Ansible `amazon.aws` collection looks like the thing to build a
+dynamic inventory from instances provisioned by Terraform, so that
+goes on to the list.
+
