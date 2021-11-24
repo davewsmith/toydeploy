@@ -318,5 +318,6 @@ goes on to the list.
 
 ## Round 15
 
-Split the github workflow in half,
-to lint the playbooks and test the application separately.
+Split the github workflow in half.
+Playbook linting and app tests/flake8 are now triggered and run separately.
+I feel less bad about how long it takes to install dependencies for linting.
