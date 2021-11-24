@@ -316,3 +316,7 @@ The Ansible `amazon.aws` collection looks like the thing to build a
 dynamic inventory from instances provisioned by Terraform, so that
 goes on to the list.
 
+## Round 15
+
+Split the github workflow in half,
+to lint the playbooks and test the application separately.
