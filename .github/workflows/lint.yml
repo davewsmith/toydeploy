@@ -2,11 +2,13 @@ name: Lint the playbooks
 
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
     paths:
     - 'playbooks/**.yml'
   pull_request:
-    branches: [ master ]
+    branches:
+    - master
     paths:
     - 'playbooks/**.yml'
 

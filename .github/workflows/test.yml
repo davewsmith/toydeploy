@@ -2,11 +2,13 @@ name: Test the application
 
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
     paths-ignore:
     - 'playbooks/**.yml'
   pull_request:
-    branches: [ master ]
+    branches:
+    - master
     paths-ignore:
     - 'playbooks/**.yml'
 
