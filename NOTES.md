@@ -1,5 +1,6 @@
 ## To Do
 
+ * Redo venv and dependency installation per https://docs.python.org/3/installing/index.html
  * Provision an EC2 instance using Terraform
  * Using Ansible's `amazon.aws` collection to build a dynamic inventory
  * Refactor main.yml into Roles.
