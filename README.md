@@ -30,47 +30,47 @@ Thereafter activate that environment.
 
 With the virtualenv activated, install requirements.
 
-    $ pip install -r requirements.txt -r requirements_dev.txt
+    (venv) $ pip install -r requirements.txt -r requirements_dev.txt
 
 To run the dev server:
 
-    $ FLASK_APP=wsgi flask run
+    (venv) $ FLASK_APP=wsgi flask run
 
 To run tests:
 
-    $ pytest
+    (venv) $ pytest
 
 When adding/changing models, get a test running first, since that uses
 an in-memory SQLite3 database. Then
 
-    $ FLASK_APP=wsgi flask db migrate -m 'what changed'
+    (venv) $ FLASK_APP=wsgi flask db migrate -m 'what changed'
 
 The corresponding `flask db upgrade` is doing by provisioning.
 
 If it's ever necessary to blow away migrations and start over, (say, when
 it's time to remove the toy models),
 
-    $ FLASK_APP=wsgi flask db init
+    (venv) $ FLASK_APP=wsgi flask db init
 
 resets the world.
 
 Keep the code clean. Before commit
 
-    $ flake8
+    (venv) $ flake8
 
 can help avoid embarrasing mistakes, as can
 
-    $ ansible-lint playbooks
+    (venv) $ ansible-lint playbooks
 
 ## Building a VM
 
 With the virtual environment activated,
 
-    $ vagrant up
+    (venv) $ vagrant up
 
 To reprovision a VM
 
-    $ vagrant provision
+    (venv) $ vagrant provision
 
 ## Deploying onto a Pi on the home network
 
@@ -78,12 +78,12 @@ I'm using existing Pis that already have my public key installed. Otherwise, `ss
 
 With the virtual environment activated,
 
-    $ ansible -i inventory_pi -m shell -a "df -h" all
-    $ ansible-playbook -i inventory_pi playbooks/main.yml
+    (venv) $ ansible -i inventory_pi -m shell -a "df -h" all
+    (venv) $ ansible-playbook -i inventory_pi playbooks/main.yml
 
 The playbook is divided into a provision part and a deploy part. After the the first run,
 
-    $ ansible-playbook -i inventory_pi playbooks/deploy.yml
+    (venv) $ ansible-playbook -i inventory_pi playbooks/deploy.yml
 
 is sufficient for deploying code changes.
 
@@ -92,7 +92,7 @@ is sufficient for deploying code changes.
 Which I'll need to provision by hand (Terraform being out of scope at the moment),
 and then `ssh-copy-id` my public key onto the instance.
 
-    $ ansible-playbook -i inventory_ec2 playbooks/main.yml
+    (venv) $ ansible-playbook -i inventory_ec2 playbooks/main.yml
 
 ## Caveat Lector
 
