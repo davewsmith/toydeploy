@@ -322,3 +322,8 @@ goes on to the list.
 Split the github workflow in half.
 Playbook linting and app tests/flake8 are now triggered and run separately.
 I feel less bad about how long it takes to install dependencies for linting.
+
+## Round 16
+
+Having decided that Terraform is in scope after all, shuffle the directory
+structure to move ansible stuff into `__provision__/ansible`.

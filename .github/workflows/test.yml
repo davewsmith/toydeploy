@@ -5,12 +5,12 @@ on:
     branches:
     - master
     paths-ignore:
-    - 'playbooks/**.yml'
+    - '__provision__'
   pull_request:
     branches:
     - master
     paths-ignore:
-    - 'playbooks/**.yml'
+    - '__provision__'
 
 jobs:
   build:

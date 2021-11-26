@@ -5,12 +5,12 @@ on:
     branches:
     - master
     paths:
-    - 'playbooks/**.yml'
+    - '__provision__/ansible/playbooks/**.yml'
   pull_request:
     branches:
     - master
     paths:
-    - 'playbooks/**.yml'
+    - '__provision__/ansible/playbooks/**.yml'
 
 jobs:
   build:
@@ -27,4 +27,5 @@ jobs:
         pip install ansible ansible-lint
     - name: ansible-lint
       run: |
+        cd __provision__/ansible
         ansible-lint playbooks

@@ -76,7 +76,11 @@ To reprovision a VM
 
 I'm using existing Pis that already have my public key installed. Otherwise, `ssh-copy-id` would do that.
 
-With the virtual environment activated,
+With the virtual environment activated, first get to the right place
+
+    (venv) $ cd __provision__/ansible
+
+then
 
     (venv) $ ansible -i inventory_pi -m shell -a "df -h" all
     (venv) $ ansible-playbook -i inventory_pi playbooks/main.yml
