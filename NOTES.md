@@ -337,3 +337,12 @@ clear from the docs, but whatever.
 Hours later, still unable to SSH into a Terraform'd instance. Launching
 an instance manually with the same AMI and key pair, and same ingress/egress
 rules works, so there's probably a stupid typo that sleeping on may find.
+
+## Round 17
+
+Slept on it and looked deeper. There was a missing route in the route table.
+
+And it looks like I was making things two hard on myself. A security group
+doesn't need to be associated with a VPC.
+I don't even need a VPC yet.
+
