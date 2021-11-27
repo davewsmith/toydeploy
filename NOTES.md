@@ -1,7 +1,6 @@
 ## To Do
 
  * Redo venv and dependency installation per https://docs.python.org/3/installing/index.html
- * Provision an EC2 instance using Terraform
  * Using Ansible's `amazon.aws` collection to build a dynamic inventory
  * Refactor main.yml into Roles.
  * Add background tasks (Rq?)
@@ -327,3 +326,14 @@ I feel less bad about how long it takes to install dependencies for linting.
 
 Having decided that Terraform is in scope after all, shuffle the directory
 structure to move ansible stuff into `__provision__/ansible`.
+
+Terraform set up was minor tedium, but adequately documented. I can
+provision an EC2 instance, but not actually _ssh_ into it.
+On investigation (manually launching an instance and then poking around
+to see what's different from the one Terraform created, it looks like
+I really do need a Security Group with Ingress rules. Not exactly
+clear from the docs, but whatever.
+
+Hours later, still unable to SSH into a Terraform'd instance. Launching
+an instance manually with the same AMI and key pair, and same ingress/egress
+rules works, so there's probably a stupid typo that sleeping on may find.
