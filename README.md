@@ -91,12 +91,47 @@ The playbook is divided into a provision part and a deploy part. After the the f
 
 is sufficient for deploying code changes.
 
-## TODO: Deploy onto an EC2 instance
+## Deploy onto an EC2 instance
 
-Which I'll need to provision by hand (Terraform being out of scope at the moment),
-and then `ssh-copy-id` my public key onto the instance.
+This assumes you have an AWS account set up and keys generated.
 
-    (venv) $ ansible-playbook -i inventory_ec2 playbooks/main.yml
+Install the AWS CLI, following https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html,
+then
+
+    (venv) $ aws configure
+
+to get keys into a known place.
+
+On the AWS console, navigate to EC2, then Network & Security > Key Pairs and generate one.
+
+### Terraform
+
+References:
+  * https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+  * https://learn.hashicorp.com/tutorials/terraform/aws-build 
+
+Install Terraform, following https://learn.hashicorp.com/tutorials/terraform/install-cli, then
+
+    (venv) $ cd __provision__/terraform
+
+Do the following once:
+
+    (venv) $ terraform init
+
+When making changes to terraform files,
+
+    (venv) $ terraform fmt
+
+will keep them formatted, and
+
+    (venv) $ terraform validate
+
+will keep them correct.
+
+### Ansible
+
+    ### (venv) $ ansible-playbook -i inventory_ec2 playbooks/main.yml
+
 
 ## Caveat Lector
 

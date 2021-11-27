@@ -13,3 +13,9 @@ __pycache__
 # up'ing a VM leaves residue
 *.log
 .vagrant
+
+# Terraform bits to ignore
+.terraform
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
