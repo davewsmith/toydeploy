@@ -69,5 +69,6 @@ resource "aws_instance" "app-appserver" {
 
   tags = {
     Name = "${var.project-name}_appserver"
+    Role = "appserver"
   }
 }
