@@ -5,11 +5,15 @@ on:
     branches:
     - master
     paths-ignore:
+    - README.md
+    - NOTES.md
     - '__provision__'
   pull_request:
     branches:
     - master
     paths-ignore:
+    - README.md
+    - NOTES.md
     - '__provision__'
 
 jobs:
