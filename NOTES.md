@@ -350,3 +350,16 @@ So, got the hard version cleaned up, moved it to the side, and made a
 simpler setup.
 
 Now on to building a dynamic inventory.
+
+Got
+
+    ansible-inventory -i inventory_aws_ec2.yml --graph
+
+and
+
+    ansible -i inventory_aws_ec2.yml all -m ping \
+      -u ubuntu --key-file ~/.ssh/toydeploy.pem
+
+working. Now to sort out how to get the group names right (maybe with a "Role:" tag?)
+before trying a real provision.
+
