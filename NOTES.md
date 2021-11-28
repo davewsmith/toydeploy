@@ -342,7 +342,11 @@ rules works, so there's probably a stupid typo that sleeping on may find.
 
 Slept on it and looked deeper. There was a missing route in the route table.
 
-And it looks like I was making things two hard on myself. A security group
+And it looks like I was making things too hard on myself. A security group
 doesn't need to be associated with a VPC.
 I don't even need a VPC yet.
 
+So, got the hard version cleaned up, moved it to the side, and made a
+simpler setup.
+
+Now on to building a dynamic inventory.
