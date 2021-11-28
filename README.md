@@ -118,20 +118,16 @@ Do the following once:
 
     (venv) $ terraform init
 
-When making changes to terraform files,
-
-    (venv) $ terraform fmt
-
-will keep them formatted, and
+When making changes to terraform files, validate them and keep them canonically formatted, via
 
     (venv) $ terraform validate
-
-will keep them correct.
+    (venv) $ terraform fmt
 
 ### Ansible
 
-    ### (venv) $ ansible-playbook -i inventory_ec2 playbooks/main.yml
+Where we're heading (and we're not there yet) is
 
+    # (venv) $ ansible-playbook -i inventory_aws_ec2.yml playbooks/main.yml
 
 ## Caveat Lector
 
