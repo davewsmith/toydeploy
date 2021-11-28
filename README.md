@@ -143,9 +143,11 @@ to clean them up.
 
 ### Ansible
 
-Where we're heading (and we're not there yet) is
+Assuming a Terraform'd instance,
 
-    # (venv) $ ansible-playbook -i inventory_aws_ec2.yml playbooks/main.yml
+    (venv) $ ansible-playbook -i inventory_aws_ec2.yml playbooks/main.yml
+
+deploys the application.
 
 ## Caveat Lector
 
