@@ -1,5 +1,6 @@
 ## To Do
 
+ * Use group names in playbooks. `appservers` first, to prepare for `dbserver`.
  * Redo venv and dependency installation per https://docs.python.org/3/installing/index.html
  * Refactor main.yml into Roles.
  * Add background tasks (Rq?)
