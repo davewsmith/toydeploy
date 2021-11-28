@@ -17,10 +17,10 @@ I'm doing this on Ubuntu 18.04. Besides some basics (e.g., `git`), this needs
  * Virtualbox (`sudo apt-get install virtualbox`)
  * virtualenv (`sudo apt-get install virtualenv`)
 
-Install Ansible into a Python3 virtual environment.
+Install Ansible and friends into a Python3 virtual environment.
 
     $ virtualenv venv --python=python3
-    $ venv/bin/pip install ansible
+    $ venv/bin/pip install ansible boto3 botocore
 
 Thereafter activate that environment.
 
