@@ -1,7 +1,8 @@
 ## To Do
 
+ * Fix vars problems introduced by dynamic inventory
+ * Decide on what to do with `terraform.tfstate`. Maybe stash it on S3?
  * Redo venv and dependency installation per https://docs.python.org/3/installing/index.html
- * Using Ansible's `amazon.aws` collection to build a dynamic inventory
  * Refactor main.yml into Roles.
  * Add background tasks (Rq?)
  * Sort out how to go into "maintenance" mode while migrations are running
@@ -368,6 +369,6 @@ before trying a real provision.
 
 almost worked, but blew up trying to bootstrap the database. Fixed a a latent ordering
 in the deploy playbook (swapped two rules so that migrations run first), and BOOM!
-The app deploys and produces output through the web.
+The app deploys and produces output via http:
 
 

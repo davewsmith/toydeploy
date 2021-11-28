@@ -3,9 +3,17 @@
 [![Playbooks](https://github.com/davewsmith/toydeploy/actions/workflows/lint.yml/badge.svg)](https://github.com/davewsmith/toydeploy/actions/workflows/lint.yml)
 [![Tests](https://github.com/davewsmith/toydeploy/actions/workflows/test.yml/badge.svg)](https://github.com/davewsmith/toydeploy/actions/workflows/test.yml)
 
-Working through what it takes to use Ansible to deploy a Flask app to a VM, to a Pi, and to an EC2 instance.
+Working through what it takes to use Terraform and Ansible to
+ * Build a local VM and deploy a Flask app into it
+ * Deploy the app to a local Raspberry Pi
+ * Provision an EC2 instance and deploy the app to it
 
-Why? Because scripting installs with bash was getting tedious, and I wanted to get some more experience with Ansible.
+Why? Because scripting installs with bash was getting tedious,
+and I wanted to get more experience with Terraform and Ansible.
+
+Few original ideas here. This is mostly cobbled together from documentation,
+Youtube videos, random github repos I've found, and the occassional
+StackOverflow answer.
 
 Follow the fun in [NOTES](NOTES.md).
 
@@ -123,6 +131,16 @@ When making changes to terraform files, validate them and keep them canonically 
     (venv) $ terraform validate
     (venv) $ terraform fmt
 
+Then
+
+    (venv) $ terraform apply
+
+to provision instance(s), and
+
+    (venv) $ terraform destroy
+
+to clean them up.
+
 ### Ansible
 
 Where we're heading (and we're not there yet) is
@@ -131,4 +149,5 @@ Where we're heading (and we're not there yet) is
 
 ## Caveat Lector
 
-This isn't necessarily fit for anyone else's use, so use at your own risk. There are better examples to crib from.
+This isn't necessarily fit for anyone else's use, so use at your own risk.
+There are probably much better examples to crib from.
