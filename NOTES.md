@@ -1,6 +1,5 @@
 ## To Do
 
- * Decide on what to do with `terraform.tfstate`. Maybe stash it on S3?
  * Redo venv and dependency installation per https://docs.python.org/3/installing/index.html
  * Refactor main.yml into Roles.
  * Add background tasks (Rq?)
@@ -381,3 +380,10 @@ in `ansible.cfg` clobbered defaults. Adding back `ini` restores the ability
 to deploy to a Pi (by allowing `inventory_pi` to get parsed). Variable precedence
 does the right thing; `ansible_user` in `inventory_pi` overrides `remote_user`
 from `ansible.cfg`.
+
+Set up terraform to use S3 for tfstate. This required another
+
+    (venv) $ terraform init
+
+Note to future self: `grep -R toydeploy .` and `grep -R us-west-1 .` to find
+the places where these are hard-coded.
