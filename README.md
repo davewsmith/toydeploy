@@ -3,7 +3,7 @@
 [![Playbooks](https://github.com/davewsmith/toydeploy/actions/workflows/lint.yml/badge.svg)](https://github.com/davewsmith/toydeploy/actions/workflows/lint.yml)
 [![Tests](https://github.com/davewsmith/toydeploy/actions/workflows/test.yml/badge.svg)](https://github.com/davewsmith/toydeploy/actions/workflows/test.yml)
 
-Working through what it takes to use Terraform and Ansible to
+Working through what it takes to use Vagrant, Terraform, and Ansible to
  * Build a local VM and deploy a Flask app into it
  * Deploy the app to a local Raspberry Pi
  * Provision an EC2 instance and deploy the app to it
