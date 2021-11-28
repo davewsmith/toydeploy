@@ -386,4 +386,6 @@ Set up terraform to use S3 for tfstate. This required another
     (venv) $ terraform init
 
 Note to future self: `grep -R toydeploy .` and `grep -R us-west-1 .` to find
-the places where these are hard-coded.
+the places where these are hard-coded. There are a few places (e.g., the
+`terraform` block in `main.tf` that could really benefit from supporting
+variables, but alas.
