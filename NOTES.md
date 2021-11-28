@@ -1,6 +1,5 @@
 ## To Do
 
- * Fix vars problems introduced by dynamic inventory
  * Decide on what to do with `terraform.tfstate`. Maybe stash it on S3?
  * Redo venv and dependency installation per https://docs.python.org/3/installing/index.html
  * Refactor main.yml into Roles.
@@ -354,21 +353,31 @@ Now on to building a dynamic inventory.
 
 Got
 
-    ansible-inventory -i inventory_aws_ec2.yml --graph
+    (venv) $ ansible-inventory -i inventory_aws_ec2.yml --graph
 
 and
 
-    ansible -i inventory_aws_ec2.yml all -m ping \
+    (venv) $ ansible -i inventory_aws_ec2.yml all -m ping \
       -u ubuntu --key-file ~/.ssh/toydeploy.pem
 
 working. Now to sort out how to get the group names right (maybe with a "Role:" tag?)
 before trying a real provision.
 
-    ansible-playbook -i inventory_aws_ec2.yml playbooks/main.yml \
+    (venv) $ ansible-playbook -i inventory_aws_ec2.yml playbooks/main.yml \
       -u ubuntu --key-file ~/.ssh/toydeploy.pem
 
 almost worked, but blew up trying to bootstrap the database. Fixed a a latent ordering
 in the deploy playbook (swapped two rules so that migrations run first), and BOOM!
 The app deploys and produces output via http:
 
+## Round 18
 
+Extended `ansible.cfg`. Now,
+
+    (venv) $ ansible-playbook -i inventory_aws_ec2.yml playbooks/main.yml
+
+is sufficient. Yay!  But, a rough edge appears. Boo! the `enable_plugins` setting
+in `ansible.cfg` clobbered defaults. Adding back `ini` restores the ability
+to deploy to a Pi (by allowing `inventory_pi` to get parsed). Variable precedence
+does the right thing; `ansible_user` in `inventory_pi` overrides `remote_user`
+from `ansible.cfg`.
