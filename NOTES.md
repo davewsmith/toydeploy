@@ -366,6 +366,8 @@ before trying a real provision.
     ansible-playbook -i inventory_aws_ec2.yml playbooks/main.yml \
       -u ubuntu --key-file ~/.ssh/toydeploy.pem
 
-almost worked, but blew up trying to bootstrap the database. So close.
+almost worked, but blew up trying to bootstrap the database. Fixed a a latent ordering
+in the deploy playbook (swapped two rules so that migrations run first), and BOOM!
+The app deploys and produces output through the web.
 
 

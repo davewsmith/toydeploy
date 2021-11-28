@@ -55,13 +55,6 @@
         path: '{{ db_dir }}/app.db'
       register: db_path
 
-    - name: Initial database bootstrap
-      become: false
-      shell:
-        chdir: '{{ app_dir }}'
-        cmd:  sqlite3 {{ db_dir }}/app.db < bootstrap.sql
-      when: not db_path.stat.exists
-
     - name: Run database migrations
       become: false
       command:
@@ -70,6 +63,13 @@
       environment:
         FLASK_APP: wsgi
       changed_when: false
+
+    - name: Initial database bootstrap
+      become: false
+      shell:
+        chdir: '{{ app_dir }}'
+        cmd:  sqlite3 {{ db_dir }}/app.db < bootstrap.sql
+      when: not db_path.stat.exists
 
     - name: Ensure uwsgi app config is present.
       become: false
