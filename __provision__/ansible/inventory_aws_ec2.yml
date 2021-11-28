@@ -4,7 +4,10 @@ regions:
   - "us-west-1"
 filters:
   instance-state-name: running
-keyed_groups:
-  - key: tags.Name
+# keyed_groups:
+# - key: tags.Name
+groups:
+  appservers: tags.Role == 'appserver'
+
 # compose:
 #  ansible_host: public_ip_address
