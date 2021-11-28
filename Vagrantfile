@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "ansible" do |ansible|
     # ansible.verbose = "v"
-    ansible.playbook = "playbooks/main.yml"
+    ansible.playbook = "__provision__/ansible/playbooks/main.yml"
   end
 
 end
