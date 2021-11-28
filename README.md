@@ -12,7 +12,7 @@ Why? Because scripting installs with bash was getting tedious,
 and I wanted to get more experience with Terraform and Ansible.
 
 Few original ideas here. This is mostly cobbled together from documentation,
-Youtube videos, random github repos I've found, and the occassional
+Youtube videos, random github repos, and the occassional
 StackOverflow answer.
 
 Follow the fun in [NOTES](NOTES.md).
@@ -145,9 +145,13 @@ to clean them up.
 
 Assuming a Terraform'd instance,
 
+    (venv) $ cd ../ansible
     (venv) $ ansible-playbook -i inventory_aws_ec2.yml playbooks/main.yml
 
-deploys the application.
+deploys the application. This runs both the provision and deploy playbooks.
+Thereafter, for code-only deploys
+
+    (venv) $ ansible-playbook -i inventory_aws_ec2.yml playbooks/deploy.yml
 
 ## Caveat Lector
 
