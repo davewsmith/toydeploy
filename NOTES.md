@@ -387,3 +387,7 @@ Note to future self: `grep -R toydeploy .` and `grep -R us-west-1 .` to find
 the places where these are hard-coded. There are a few places (e.g., the
 `terraform` block in `main.tf`) that could really benefit from supporting
 variables, but alas.
+
+This playbook shuffling left Vagrantfile broken. Fixed it, and noticed that
+it accidentally relies on being fine without an `ansible.cfg`, which it
+now cannot find. Hm...
