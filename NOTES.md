@@ -397,8 +397,9 @@ now cannot find. Hm...
 After starting to catch up (ha!) on AQS re:Invent 2021, noticed that Graviton
 has flown below my radar. I'm not doing anything complicated here, so let's try it.
 
-It works! $0.24/day, down from $0.33/day! I save a whole (checks notes) $21 a year!
-A t4g.micro is a whopping $1/week if I reserve for a year.
+It works! And all I had to change was the AMI and instance names.
+This'll drop my EC2 spend from $0.33/day to $0.24/day! I save a whole (checks notes) $21 a year!
+Reserved for a year, a t4g.micro is a whopping $1/week.
 
 BRB, doing the math on how much I spend a year on coffee...
 
