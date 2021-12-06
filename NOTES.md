@@ -391,3 +391,15 @@ variables, but alas.
 This playbook shuffling left Vagrantfile broken. Fixed it, and noticed that
 it accidentally relies on being fine without an `ansible.cfg`, which it
 now cannot find. Hm...
+
+## Round 19 - Side Quest
+
+After starting to catch up (ha!) on AQS re:Invent 2021, noticed that Graviton
+has flown below my radar. I'm not doing anything complicated here, so let's try it.
+
+It works! $0.24/day, down from $0.33/day! I save a whole (checks notes) $21 a year!
+A t4g.micro is a whopping $1/week if I reserve for a year.
+
+BRB, doing the math on how much I spend a year on coffee...
+
+
