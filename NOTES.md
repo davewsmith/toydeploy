@@ -282,7 +282,7 @@ This seems like a workable scheme.
 
 ## Day 12
 
-An excuse to use `lininfile`. Modify the log rotation script that
+An excuse to use `lineinfile`. Modify the log rotation script that
 comes with `nginx` to keep logs for 30 days instead of 14.
 
 ## Round 13
