@@ -68,8 +68,10 @@ resource "aws_security_group" "app-sg" {
 }
 
 resource "aws_instance" "app-appserver" {
-  ami             = "ami-083f68207d3376798" # Ubuntu 18.04
-  instance_type   = "t2.micro"
+  # ami             = "ami-083f68207d3376798" # Ubuntu 18.04
+  # instance_type   = "t2.micro"
+  ami             = "ami-08e45d0d0a04bc682" # Ubuntu 18.04 (Arm)
+  instance_type   = "t4g.micro"
   security_groups = [aws_security_group.app-sg.name]
   key_name        = var.key-name
 
