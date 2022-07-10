@@ -3,12 +3,12 @@ name: Lint the playbooks
 on:
   push:
     branches:
-    - master
+    - main
     paths:
     - '__provision__/ansible/playbooks/**.yml'
   pull_request:
     branches:
-    - master
+    - main
     paths:
     - '__provision__/ansible/playbooks/**.yml'
 

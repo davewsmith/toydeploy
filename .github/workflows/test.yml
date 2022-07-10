@@ -3,14 +3,14 @@ name: Test the application
 on:
   push:
     branches:
-    - master
+    - main
     paths-ignore:
     - README.md
     - NOTES.md
     - '__provision__'
   pull_request:
     branches:
-    - master
+    - main
     paths-ignore:
     - README.md
     - NOTES.md
