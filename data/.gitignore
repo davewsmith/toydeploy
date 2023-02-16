@@ -1,0 +1,4 @@
+# This ensure git doesn't ignore an empty directory, while ignoring
+# eventual contents
+
+*.db

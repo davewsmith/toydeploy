@@ -4,9 +4,6 @@ venv
 # ignore the .env file that provisioning renders
 .env
 
-# ignore the local app.db when using Vagrant
-data
-
 # Python residue
 __pycache__
 
