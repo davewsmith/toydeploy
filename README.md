@@ -28,6 +28,7 @@ I'm doing this on Ubuntu 18.04. Besides some basics (e.g., `git`), this needs
 Install Ansible and friends into a Python3 virtual environment.
 
     $ virtualenv venv --python=python3
+    $ venv/bin/pip install --upgrade pip
     $ venv/bin/pip install ansible boto3 botocore
 
 Thereafter activate that environment.
