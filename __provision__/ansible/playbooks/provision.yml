@@ -32,7 +32,7 @@
         state: present
       with_items:
         - python3-pip
-        - python-virtualenv
+        - python3-virtualenv
         - git
         - sqlite3
 

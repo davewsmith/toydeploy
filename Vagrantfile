@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/bionic64"  # 18.04 LTS
+  config.vm.box = "ubuntu/focal64"  # 20.04 LTS
 
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
