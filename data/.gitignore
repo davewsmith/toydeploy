@@ -1,4 +1,3 @@
-# This ensure git doesn't ignore an empty directory, while ignoring
-# eventual contents
+# This file ensures git keeps the directory. And here we ignore that actual database.
 
 *.db
