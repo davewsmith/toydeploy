@@ -403,4 +403,9 @@ Reserved for a year, a t4g.micro is a whopping $1/week.
 
 BRB, doing the math on how much I spend a year on coffee...
 
+## Round 20
+
+Target Ubuntu 20.04. Also fix a deployment bug (for vagrant) that crept in later.
+
+Also some futzing with the AWS console. Prior experiments may have leaked VPCs.
 
